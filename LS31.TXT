@@ -1,0 +1,17 @@
+LS31.txt
+GM01ProgVer31は、LS31用プログラムです。
+LS32、LS33用とは異なります。
+
+LS32用　GM01ProgVer32と異なる点。
+　　　　LS32用は　MplDef.bas　のみ　新規　2003.11.04付けのもの使用
+　　　　　　　　　　update: 2003.12.15 s.f. LS-32立上げに伴う変更　
+　　　　　　　　　　パソコンOSが　windowsMEから　windowsXPに変わったため
+　　　　LS31用は　MplDef.bas　は　2002.1.13付け
+　　　　　　　　　OSは、windowsME
+
+
+
+　　
+
+
+

@@ -1,0 +1,58 @@
+Me.Picture1
+obj.Scale (-20, 105)-(125, -10)     '--------------- 画面の大きさ(X0,Y0)-(X1,Y1)
+
+Public Sub MyEditGph(obj As Object, ymax!, ymin!)
+  Dim i%, n%
+  Dim x!, y!, xs!, ys!, k!
+  Dim ChrW!, ChrH!
+  '
+  If MkLabel = "FR" Or MkLabel = "FL" Then FrntRr = 1 Else FrntRr = 2
+  obj.Scale (-20, 105)-(105, -10)
+
+  If gItem4Ch(No) <> 0 Then
+    If ymax = 0 And ymin = 0 Then
+      ymax = PRes4Ch(504, No) * k
+      ymin = PRes4Ch(505, No) * k
+      AutoScaleDef ymax, ymin
+    End If
+    xs = 100 / gItem4Ch(No)
+    ys = 100 / (ymax - ymin)
+    
+    obj.CurrentX = -19: obj.CurrentY = 4: obj.Print Right(Space(10) & Str(ymin), 9)
+    obj.CurrentX = -19: obj.CurrentY = 100: obj.Print Right(Space(10) & Str(ymax), 9)
+    obj.CurrentX = -19: obj.CurrentY = 55: obj.Print UnitLabel
+    obj.CurrentX = -19: obj.CurrentY = 100 - LabelPos * 8: obj.Print MkLabel & Mark
+    obj.CurrentX = 95: obj.CurrentY = -1: obj.Print gItem4Ch(No)
+    obj.CurrentX = 60: obj.CurrentY = -1: obj.Print "n→"
+    obj.CurrentX = 10: obj.CurrentY = -1: obj.Print "同ロット分布"
+    obj.DrawWidth = 2
+    obj.Line (0, 0)-(100, 0)
+    obj.Line (0, 0)-(0, 100)
+    obj.DrawWidth = 1
+    If gStrData(60) = "有り" Then
+      y = (gItemUp(No) - ymin) * ys
+      obj.Line (0, y)-(100, y)
+      y = (gItemLow(No) - ymin) * ys
+      obj.Line (0, y)-(100, y)
+    End If
+    OldFS = obj.FontSize
+    obj.FontSize = 6
+    ChrW = obj.TextWidth(Mark) / 2
+    ChrH = obj.TextHeight(Mark) / 2
+    n = 0
+    For i = 1 To Total4ChNum
+      If PRes4Ch(i, No) <> 0 Then
+        n = n + 1
+        'x = n * xs - ChrW
+        x = i * xs - ChrW
+        y = (PRes4Ch(i, No) * k - ymin) * ys - ChrH
+        obj.CurrentX = x
+        obj.CurrentY = y
+        obj.Print Mark
+        If n >= gItem4Ch(No) Then Exit For
+      End If
+    Next i
+    obj.FontSize = OldFS
+  End If
+
+End Sub

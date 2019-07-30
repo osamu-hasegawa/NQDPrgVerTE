@@ -1,0 +1,33 @@
+LS33R.txt
+GM01ProgVer.   LS33R-Ver33R07****  シリーズは、
+LS33改造機用のプログラムです。
+
+　　GM01ProgVer32_060806　　以前　LS31,32,33用プログラム
+　　GM01ProｇVer33R061221　以降　LS33R用
+　　
+Keyence LaderProgramは　０６１２以降の物
+　　　V227,,,,,　V403　対応
+
+　　PC　→　PLC　へ　　「成形中」出力信号を追加。
+　　　
+
+
+
+
+
+LS32.txt
+GM01ProgVer32は、LS32、LS33用プログラムです。
+LS31用とは異なります。
+Keyence LaderProgram　は、　Ver.０５０７２３が　最終。
+
+
+LS31用　GM01ProgVer3と異なる点。
+update: 2003.12.15 s.f. LS-32立上げに伴う変更　
+　　　　　　　　MplDef.bas　のみ　新規　2003.11.04付けのもの使用
+                パソコンＯＳが　ＭｅからＸＰに変わったため
+　　　　＜参考＞LS31用GM01ProgVer3　の　MplDef.basは2002.1.13付け
+　　　　　　　　LS31は、OS　windowsME
+'　　　　　　
+
+
+
