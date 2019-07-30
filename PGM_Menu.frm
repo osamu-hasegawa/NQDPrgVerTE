@@ -402,7 +402,7 @@ Begin VB.Form PGM_Menu
    End
    Begin VB.Label Label1 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "NQD-71_VerTE130426"
+      Caption         =   "NQD-71_VerTE130426SP7"
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
          Size            =   12
@@ -415,10 +415,10 @@ Begin VB.Form PGM_Menu
       ForeColor       =   &H00800000&
       Height          =   252
       Index           =   13
-      Left            =   2880
+      Left            =   2520
       TabIndex        =   35
       Top             =   600
-      Width           =   2892
+      Width           =   3252
    End
    Begin VB.Label Label1 
       AutoSize        =   -1  'True
@@ -1026,6 +1026,7 @@ Attribute VB_Exposed = False
 '　　　 Ver.NQD_71_130425  2013. 4.25.s.f.  ﾀｸﾄﾀｲﾑ延長（30分以上可能へ）apre,aposi,atemp　配列個数　1801→12000（＝12000秒）へ
 '                                           dataﾌｧｲﾙ名に　現在時間追加、Scr.Copyの無効ｼｮｯﾄ判断を削除
 '　　　 Ver.NQD_71_130426  2013. 4.26.s.f.  bug修正
+'　　　 Ver.NQD_71_130426  2013. 5.05.s.f.  NQD7対応 zzz=高さデータ追加
 '
 '******************************************************************************
 Option Explicit
