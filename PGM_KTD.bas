@@ -500,13 +500,13 @@ Dim j%, fnum%
 Dim fDir$, flNm$
   fnum = FreeFile
   fDir = App.path & "\..\data\"
-  flNm = Mid(Date, 4, 2) & Mid(Date, 7, 2) & Trim(Str(i_s)) & "d.mpr"
-  Open fDir & flNm For Output As #fnum
+'  flNm = Mid(Date, 4, 2) & Mid(Date, 7, 2) & Trim(Str(i_s)) & "d.mpr"
+  flNm = "NQD" & Format$(Now, "yymmddhhmmss") & Format(Trim(Str(i_s)), "0") & ".mpr"
   Write #fnum, Date
   Write #fnum, Time
   Write #fnum, i
   For j = 0 To i
-    Write #fnum, atemp(j, 0), atemp(j, 1), atemp(j, 2), apre(j), aposi(j)
+    Write #fnum, i, atemp(j, 0), atemp(j, 1), atemp(j, 2), apre(j), aposi(j)
   Next j
   Close #fnum
 End Sub

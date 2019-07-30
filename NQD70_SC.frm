@@ -211,23 +211,21 @@ Begin VB.Form NQD70_SC
    End
    Begin VB.CommandButton Command2 
       Caption         =   "S"
-      Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "ＭＳ Ｐゴシック"
-         Size            =   10.8
+         Size            =   7.8
          Charset         =   128
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   300
+      Height          =   180
       Index           =   5
-      Left            =   1440
+      Left            =   0
       TabIndex        =   57
-      Top             =   1320
-      Visible         =   0   'False
-      Width           =   345
+      Top             =   600
+      Width           =   228
    End
    Begin VB.ListBox List1 
       BackColor       =   &H00C0C0C0&
@@ -284,9 +282,9 @@ Begin VB.Form NQD70_SC
       EndProperty
       Height          =   300
       Index           =   4
-      Left            =   120
+      Left            =   0
       TabIndex        =   56
-      Top             =   1200
+      Top             =   1320
       Visible         =   0   'False
       Width           =   1692
    End
@@ -2696,7 +2694,13 @@ Case 3                        'edit　の　'02/8暫定変更(s.f)
 Case 4      '真空到達
   gVumFlg = 1                       '真空到達=1
 Case 5      '"S" ;データセーブ
-  lDtSaveFlg = True
+  If lDtSaveFlg = True Then
+          lDtSaveFlg = False          'データセーブ　受付解除
+          Command2(5).BackColor = SokuCor(0)
+    Else
+          lDtSaveFlg = True           'データセーブ　受付
+          Command2(5).BackColor = SokuCor(1)
+  End If
 Case 8      '強制ソークタイム
   If lSokuFlg = True Then
           lSokuFlg = False          '強制ソークタイム　受付解除
@@ -2861,7 +2865,6 @@ Dim zclear!
 Dim idum%, iidum%       ' 090803 tsuika
 Dim tudiffTime!
 Dim iSento_flg%         ' 先頭ダミーﾌﾗｸﾞ
-Dim zzz!    ' 2013.4.6 高さ到達時の　Ｚ座標値
 '
  On Error GoTo errHandler:
 ' ---  init  val-----------------
@@ -3353,9 +3356,7 @@ TimeUpEnd:
              ppos = "SC JkE1 sts=C870"
          If (sts And &H1) <> 0 Then      ' 成立で「-1」　　不成立で「0」
             ist0 = ist0 + 1             '/* 位置達成で終了 */
-            zzz = r_z()
-            Label2(6).Caption = "位置 pass CNT " & Str(ist0) & " " & Str(zzz)   '11/2 sf
-'            Label2(6).Caption = "位置 pass CNT " & Str(ist0)   '11/2 sf
+            Label2(6).Caption = "位置 pass CNT " & Str(ist0)   '11/2 sf
             rstcm1   '  compareter reset
 '            Ready_Wait    '
          Else                       ' 2008.2.21  変更　１秒に１回行き過ぎを確認へ
@@ -3381,9 +3382,7 @@ TimeUpEnd:
            ppos = "SC JkE3 sts=C870"
           If (sts And &H1) <> 0 Then
             ist0 = ist0 + 1             '/* 位置達成で終了 */
-            zzz = r_z()
-            Label2(6).Caption = "位置 pass CNT " & Str(ist0) & " " & Str(zzz)   '11/2 sf
-'            Label2(6).Caption = "位置 pass CNT " & Str(ist0)   '11/2 sf
+            Label2(6).Caption = "位置 pass CNT " & Str(ist0)   '11/2 sf
             rstcm1   '  compareter reset
          Else                       ' 2008.2.21  変更　１秒に１回行き過ぎを確認へ
            If Int(mTime) = Int(Timer) Then
@@ -3424,8 +3423,7 @@ TimeUpEnd:
           sts = C870Sts(3)  'status3 を読む
           If (sts And &H1) <> 0 Then
             ist0 = ist0 + 1             '/* 位置達成で終了 */
-            zzz = r_z()
-            Label2(6).Caption = "位置 pass CNT " & Str(ist0) & " " & Str(zzz)   '11/2 sf
+            Label2(6).Caption = "位置 pass CNT " & Str(ist0)   '11/2 sf
             rstcm1   '  compareter reset
 '            Ready_Wait    '
 '            Do                 'Do Loop  ' 2005.11.22 削除　　一度読んだらstatusはresetされる。2度読み不可！！
@@ -3439,7 +3437,7 @@ TimeUpEnd:
               If r_z() >= z(ist0) Then
                 ist0 = ist0 + 1             '
                 Label2(6).Caption = "位置 pass PC " & Str(ist0)
-             End If
+              End If
             End If
           End If
 '
@@ -4226,8 +4224,7 @@ send:
       Rec_of_Mold = Rec_of_Mold & "  " & Format(cp_z, "000.000") & " "
       Rec_of_Mold = Rec_of_Mold & "  " & Format(Int(stime / 60), "0") & ":" & Format(Int(stime) Mod 60, "00") & " "
       Rec_of_Mold = Rec_of_Mold & "  " & Format(T_keisu(T_keisuCont(1) - 1), "0.000") & "    " & Format(Z3_Hosei(T_keisuCont(1) - 1), "0.000")
-      Rec_of_Mold = Rec_of_Mold & "  " & Format(avekatJ(T_keisuCont(1) - 1), "000") & "  " & Format(iHoonStopNo, "###0") & "  " & Format(zzz, "000.000")
-'      Rec_of_Mold = Rec_of_Mold & "  " & Format(avekatJ(T_keisuCont(1) - 1), "000") & "  " & Format(iHoonStopNo, "###0")
+      Rec_of_Mold = Rec_of_Mold & "  " & Format(avekatJ(T_keisuCont(1) - 1), "000") & "  " & Format(iHoonStopNo, "###0")
       If AlmON = True Then Rec_of_Mold = Rec_of_Mold & "  " & Almdisp
       List1.AddItem Rec_of_Mold, 0    ' ”、0”　追加　2004.8.18
 '
